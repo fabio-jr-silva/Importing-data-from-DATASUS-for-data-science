@@ -30,6 +30,11 @@ ufs = c('AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES',
         'SP', 'SE', 'TO')
 
 
+# Bases de dados temporários
+internacoes = NULL
+InterBR = NULL
+
+
 # Estrutura de repetição para pegar todos os estados informados acima
 for(uf in 1:NROW(ufs)){ # < -- DEIXE O CURSOSR EM CIMA DESSE for e aperte ctrl + Enter para executar
   
@@ -76,31 +81,18 @@ for(uf in 1:NROW(ufs)){ # < -- DEIXE O CURSOSR EM CIMA DESSE for e aperte ctrl +
       iPd = subset(newdf, DIAG_PRINC=='A90')
 # ---------------------------------------------------------------------------------------------------
       
-      if(data_corrente == data_inicial){
-        iternacoes = iPd
-        data_corrente = data_corrente + ddays(as.integer(days_in_month(data_corrente)))
-        
-      } else{
-        # Junção de todas as internações por dengue
-        iternacoes = rbind(iternacoes, iPd)
-        data_corrente = data_corrente + ddays(as.integer(days_in_month(data_corrente)))
-      }
-    
+      internacoes = rbind(iPd, internacoes)
+      data_corrente = data_corrente + ddays(as.integer(days_in_month(data_corrente)))
+      
  
  } # Fim da estrutura de repetição para o período
   
   # Mostra o número de internações por estado no período analizado
-  print(paste(ufs[uf], ' Teve ', nrow(iternacoes), ' Internações', sep=''))
+  print(paste(ufs[uf], ' Teve ', nrow(internacoes), ' Internações', sep=''))
   
-  if(uf == 1){
-    # Inicializacao da variavel
-    InterBR = iternacoes
-  } else{
-    # As internaçoes dos estados e período selecionado
-    InterBR = rbind(InterBR, iternacoes) 
-  }
-  
-  
+  # As internaçoes dos estados e período selecionado
+  InterBR = rbind(InterBR, internacoes) 
+ 
 } # Fim da estrutura de repetição que carrega os estados
 
 
