@@ -24,12 +24,10 @@ setwd("C:/AIH")
 
 
 # Deixe na lista abaixo apenas os estados que você baixou no siste do DATASUS, apague o resto
-ufs = c('AC') 
-
-# , 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 
-#         'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 
-#         'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 
-#         'SP', 'SE', 'TO')
+ufs = c('AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 
+        'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 
+        'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 
+        'SP', 'SE', 'TO')
 
 
 # Estrutura de repetição para pegar todos os estados informados acima
@@ -104,7 +102,6 @@ for(uf in 1:NROW(ufs)){ # < -- DEIXE O CURSOSR EM CIMA DESSE for e aperte ctrl +
   
   
 } # Fim da estrutura de repetição que carrega os estados
-
 
 
 # Escreve um arquivo .csv sem os nomes das colunas selecionadas acima
